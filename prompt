@@ -1,0 +1,15 @@
+
+
+npx create-next-app@latest my-app --yes
+cd my-app
+npm run dev
+
+Create and implement a simple next js app like the above.
+The app is supposed to be a word list memorization helper called "Walden's Word Trainer"
+
+It should let you make accounts with Better Auth, and when you log in you can create a word list. Use prisma and sqlite for the ORM. To keep it simple, word lists are public for all users.
+Then you can study a word list. It should give you a text box to type in a word. Then when you hit enter it should submit the word. If its in the list that's a success, otherwise failure.
+When you are done hit done button, and it will show you in two sections, 1. the words you didn't remember. And 2. The words you got incorrect.
+
+
+Before you get started ask clairfying questions　and create a spec file

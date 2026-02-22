@@ -1,36 +1,127 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Walden's Word Trainer
+
+A simple, effective word list memorization helper built with Next.js.
+
+## Features
+
+- **User Authentication**: Sign up and log in with email/password using Better Auth
+- **Create Word Lists**: Paste word lists with definitions (one word per line)
+- **Public Word Lists**: All word lists are visible to logged-in users
+- **Study Mode**: Test your recall by typing words from memory
+- **Results Tracking**: See which words you remembered, missed, and any incorrect attempts
+
+## Tech Stack
+
+- **Framework**: Next.js 16 (App Router)
+- **Database**: SQLite with Prisma ORM (v7)
+- **Authentication**: Better Auth
+- **Styling**: Tailwind CSS (with dark mode support)
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 20.19.0 or higher
+- npm
+
+### Installation
+
+1. Clone the repository and navigate to the project:
+
+```bash
+cd word-list
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+3. Set up your environment variables by creating a `.env` file:
+
+```env
+DATABASE_URL="file:./prisma/dev.db"
+BETTER_AUTH_SECRET=your-super-secret-key-change-in-production-32chars
+BETTER_AUTH_URL=http://localhost:3000
+NEXT_PUBLIC_APP_URL=http://localhost:3000
+```
+
+> **Important**: Change `BETTER_AUTH_SECRET` to a secure random string in production!
+
+4. Generate Prisma client and run migrations:
+
+```bash
+npx prisma generate
+npx prisma migrate dev
+```
+
+5. Start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+6. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Word List Format
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Word lists should be entered with one word per line, in the format:
 
-## Learn More
+```
+WORD definition text...
+```
 
-To learn more about Next.js, take a look at the following resources:
+For example:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+AA rough, cindery lava [n AAS]
+AB a muscle in the abdomen [n ABS]
+AD an advertisement [n ADS]
+AE one [adj]
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The word is everything before the first space. The definition is everything after.
 
-## Deploy on Vercel
+## Study Mode
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Navigate to a word list and click "Study This List"
+2. Type words from memory and press Enter
+3. Words are automatically uppercased
+4. Correct words show in green with their definitions
+5. Incorrect words (not in the list) show in red
+6. Duplicate entries are ignored
+7. Click "Done" when finished to see your results
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Results
+
+After completing a study session, you'll see:
+
+- **Words You Remembered**: Successfully recalled words with definitions
+- **Words You Missed**: Words in the list you didn't type
+- **Incorrect Attempts**: Words you typed that weren't in the list
+
+## Development
+
+```bash
+# Run development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Start production server
+npm start
+
+# Run linting
+npm run lint
+
+# Prisma commands
+npx prisma studio    # Open database GUI
+npx prisma generate  # Regenerate client
+npx prisma migrate dev --name <name>  # Create migration
+```
+
+## License
+
+MIT
