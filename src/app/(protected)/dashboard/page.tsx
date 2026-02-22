@@ -3,22 +3,7 @@ import { prisma } from "@/lib/prisma";
 import Card, { CardContent, CardHeader, CardTitle } from "@/components/Card";
 import Button from "@/components/Button";
 
-type WordListWithDetails = {
-  id: string;
-  name: string;
-  createdAt: Date;
-  updatedAt: Date;
-  userId: string;
-  user: {
-    name: string | null;
-    email: string;
-  };
-  _count: {
-    words: number;
-  };
-};
-
-async function getWordLists(): Promise<WordListWithDetails[]> {
+async function getWordLists() {
   const wordLists = await prisma.wordList.findMany({
     include: {
       user: {
