@@ -2,9 +2,8 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider        = "prisma-client"
-  output          = "../src/generated/prisma"
-  previewFeatures = ["driverAdapters"]
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
 }
 
 datasource db {
@@ -13,17 +12,17 @@ datasource db {
 
 // Better Auth models
 model User {
-  id            String    @id @default(cuid())
-  email         String    @unique
+  id            String   @id @default(cuid())
+  email         String   @unique
   name          String?
-  emailVerified Boolean   @default(false)
+  emailVerified Boolean  @default(false)
   image         String?
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 
-  sessions   Session[]
-  accounts   Account[]
-  wordLists  WordList[]
+  sessions  Session[]
+  accounts  Account[]
+  wordLists WordList[]
 }
 
 model Session {
@@ -80,7 +79,7 @@ model WordList {
 
 model Word {
   id         String  @id @default(cuid())
-  word       String  // stored uppercase
+  word       String // stored uppercase
   definition String?
   wordListId String
 
