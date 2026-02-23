@@ -198,7 +198,7 @@ export default function StudyPage({
 
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
-            <div>
+            <div className="relative">
               <Input
                 ref={inputRef}
                 type="text"
@@ -207,11 +207,27 @@ export default function StudyPage({
                 onChange={(e) => setCurrentInput(e.target.value.toUpperCase())}
                 autoComplete="off"
                 autoCapitalize="characters"
-                className="text-lg font-mono uppercase"
+                className="text-lg font-mono uppercase pr-16"
               />
-              <p className="mt-2 text-sm text-muted-foreground">
-                Type words from memory. Press Enter to submit each word.
-              </p>
+              <Button
+                type="submit"
+                size="sm"
+                className="md:hidden absolute right-2 top-1/2 -translate-y-1/2"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="w-5 h-5"
+                >
+                  <path d="M5 12h14" />
+                  <path d="m12 5 7 7-7 7" />
+                </svg>
+              </Button>
             </div>
 
             {/* Last result feedback */}
